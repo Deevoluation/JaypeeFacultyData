@@ -1,11 +1,12 @@
-from urllib2 import urlopen
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 url = "https://scholar.google.co.in/citations?view_op=search_authors&mauthors=anuja+arora+jiit&hl=en&oi=ao"
 base_link = "https://scholar.google.co.in"
 
 def main():
-        page = urlib2.urlopen(url)
+        file = open('temp.html', 'w', newline = '')
+        page = urlopen(url)
         soup = BeautifulSoup(page)
         all_anchors = soup.find_all('a')
         print(soup)
@@ -22,6 +23,7 @@ def main():
         profile_soup = BeautifulSoup(profile_page)
         print("\n")
         print(profile_soup)
+        file.write(str(profile_soup))
 
 
 if __name__ == "__main__":
