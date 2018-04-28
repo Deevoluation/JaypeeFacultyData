@@ -34,10 +34,19 @@ def main():
     dataTable = allTables[1]
     body = dataTable.find_all('tbody')
     rows = body[0].find_all('tr')
-    columns = rows[0].find_all('td')
-    print(columns[0].find_all('a')[0].get_text())
-    print(columns[1].get_text())
-    print(columns[2].get_text())
+    for row in rows:
+        columns = row.find_all('td')
+        # print(columns[0].find_all('a')[0].get_text())
+        # print(columns[1].get_text())
+        # print(columns[2].get_text())
+        if columns[0].find_all('a')[0].get_text() in papersname:
+            pos = papersname.index(columns[0].find_all('a'[0]))
+            papersInfo[pos].append("add name of current professor as a co-author to this paper")
+        else:
+            paper = [columns[0].find_all('a')[0].get_text(), ]
+            papersInfo.append(paper)
+
+    print(papersInfo.__len__())
 
 if __name__ == "__main__":
     main()
