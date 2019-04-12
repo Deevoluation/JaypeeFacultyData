@@ -4,6 +4,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup, NavigableString
 import pandas as pd
 import csv
+import xlrd
 
 
 papersInfo = []
@@ -73,7 +74,7 @@ def main():
         all_anchors = soup.find_all('a')
         base_link = "https://scholar.google.co.in"
         further_link = "&cstart=20&pagesize=80"
-        faculty_link = soup.select_one("a[href*=/citations?user]")
+        faculty_link = soup.select_one(".gs_ai_pho")
         profile_link = base_link + faculty_link['href']
     
         profile_page = urlopen(profile_link + "")
